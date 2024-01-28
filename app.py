@@ -1,10 +1,41 @@
 import secrets
 import uuid
+from random import random
 from flask import Flask, render_template, request, redirect, url_for, flash, session
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime, timedelta
+from flask_mail import Mail, Message
+from apscheduler.schedulers.background import BackgroundScheduler
 
 app = Flask(__name__)
+
+dt = datetime.now()
+currentday = dt.strftime('%d %B %Y')
+
+lastday = (dt - timedelta(1)).strftime('%d %B %Y')
+secondlastday = (dt - timedelta(2)).strftime('%d %B %Y')
+# print(currentday)
+# print(lastday)
+# print(secondlastday)
+
+# print(round(1000 * random()))
+
+now = datetime.now()
+# print(now)
+
+# Configuration for mail
+app.config['MAIL_SERVER'] = 'smtp.gmail.com'
+app.config['MAIL_PORT'] = 465
+app.config['MAIL_USE_TLS'] = False
+app.config['MAIL_USE_SSL'] = True
+app.config['MAIL_USERNAME'] = 'behalaff@gmail.com'
+app.config['MAIL_PASSWORD'] = 'gvzhzmfydumhvhhd'
+app.config['MAIL_DEFAULT_SENDER'] = 'behalaff@gmail.com'
+mail = Mail(app)
+
+
+
+
 app.secret_key = '0df660dd7e2503a4'
 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///resultsDatabase.db'
@@ -12,18 +43,6 @@ app.config['SECRET_KEY'] = 'saredevelopersbhaihai404'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
-
-dt = datetime.now()
-currentday = dt.strftime('%d/%m/%Y')
-
-lastday = (dt - timedelta(1)).strftime('%d/%m/%Y')
-secondlastday = (dt - timedelta(2)).strftime('%d/%m/%Y')
-print(currentday)
-print(lastday)
-print(secondlastday)
-
-now = datetime.now()
-print(now)
 
 # 9:55
 # 11:25
@@ -55,8 +74,6 @@ slots_add = {
     'slot7' : now.replace(hour=19, minute=0, second=0, microsecond=0),
     'slot8' : now.replace(hour=20, minute=30, second=0, microsecond=0),
 }
-# print(now < today8am)
-print(now < slots_show['slot1'])
 
 class Result(db.Model):
     __tablename__ = "results"
@@ -82,9 +99,90 @@ class Result(db.Model):
 
 ADMIN = {'admin': {'password': 'admin@123'}}
 
+
+def send_reminder(slot, time, ampm):
+    with app.app_context():
+        recipient_email = 'fitness.buddy2.k22@gmail.com'
+        subject = f'Urgent: slot-{slot} Result at {time} {ampm} Reminder, BehalaFF'
+        # Read the content of the text file
+        with open('mail.txt', 'r') as file:
+            file_content = file.read()
+
+        # Replace placeholders with actual information
+        replaced_content = file_content.replace('[slot]', slot)
+        replaced_content = replaced_content.replace('[time]', time)
+        replaced_content = replaced_content.replace('[ampm]', ampm)
+        # Add more replacements as needed
+        print(replaced_content)
+
+        check = Result.query.filter_by(date=currentday).first()
+        if check:
+            if slot == '1':
+                if check.slot_1_1:
+                    return
+            elif slot == '2':
+                if check.slot_2_1:
+                    return
+            elif slot == '3':
+                if check.slot_3_1:
+                    return
+            elif slot == '4':
+                if check.slot_4_1:
+                    return
+            elif slot == '5':
+                if check.slot_5_1:
+                    return
+            elif slot == '6':
+                if check.slot_6_1:
+                    return
+            elif slot == '7':
+                if check.slot_7_1:
+                    return
+            elif slot == '8':
+                if check.slot_8_1:
+                    return
+
+    # Create the email message
+        message = Message(subject, recipients=[recipient_email])
+        message.body = replaced_content
+
+        # # Send the email
+        mail.send(message)
+
+with app.app_context():
+    scheduler = BackgroundScheduler()
+
+    # Schedule email tasks for specific times
+    scheduler.add_job(send_reminder, 'cron', hour=9, minute=25, args=("1", "9:55", "AM"))
+    scheduler.add_job(send_reminder, 'cron', hour=10, minute=55, args=("2", "11:25", "AM"))
+    scheduler.add_job(send_reminder, 'cron', hour=12, minute=25, args=("3", "12:55", "PM"))
+    scheduler.add_job(send_reminder, 'cron', hour=13, minute=55, args=("4", "2:25", "PM"))
+    scheduler.add_job(send_reminder, 'cron', hour=15, minute=25, args=("5", "15:55", "PM"))
+    scheduler.add_job(send_reminder, 'cron', hour=16, minute=55, args=("6", "5:25", "PM"))
+    scheduler.add_job(send_reminder, 'cron', hour=18, minute=25, args=("7", "6:55", "PM"))
+    scheduler.add_job(send_reminder, 'cron', hour=19, minute=55, args=("8", "8:25", "PM"))
+
+    scheduler.start()
+
+# with app.app_context():
+#   # call your method here
+#     cutoff = (datetime.now() - timedelta(days=2)).strftime('%d/%m/%Y')
+#     Result.query.filter(Result.date<=cutoff).delete()
+#     db.session.commit()
+
+# #     def delete_old_data():
+# #         six_months_ago = datetime.now() - timedelta(days=1)
+# #         old_data = Result.query.filter(Result.date <= six_months_ago.strftime('%d/%m/%Y')).all()
+
+# #         for data in old_data:
+# #             db.session.delete(data)
+
+# #         db.session.commit()
+
+# #     delete_old_data()
+
 @app.route("/")
 def home():
-
     today = Result.query.filter_by(date=currentday).first()
     yesterday1 = Result.query.filter_by(date=lastday).first()
     yesterday2 = Result.query.filter_by(date=secondlastday).first()
@@ -100,13 +198,7 @@ def contact():
     
 @app.route("/tips")
 def tips():
-    return render_template("Tips.html")
-
-
-    
-@app.route("/tipstommorow")
-def tipstommorow():
-        return render_template("tips-tommorow.html")
+    return render_template("tips.html")
 
 
 @app.route('/about')
@@ -114,7 +206,7 @@ def about():
     return render_template("about.html")
 
 
-@app.route('/patti-chart')
+@app.route('/pattichart')
 def pattichart():
     return render_template("patti-chart.html")
 
@@ -123,12 +215,9 @@ def pattichart():
 def luckypatti():
     return render_template("lucky-patti.html")
 
-@app.route('/old')
-def old():
-    return render_template("old.html")
-
 @app.route('/pattitips')
 def pattitips():
+
     return render_template("patti-tips.html")
 
 @app.route("/admin_auth", methods=['GET', 'POST'])
