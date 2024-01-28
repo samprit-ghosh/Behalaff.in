@@ -1,0 +1,725 @@
+
+
+
+
+
+
+{% extends 'layout.html' %}
+{% block title %} {{title}} {% endblock title %}
+{% block body %}
+
+
+<body class="index-body">
+
+<br><br>
+	<div class="container">
+		<b><p id="dateTime" class="text-center "></p></b>
+		<script>
+			// Function to update date and time
+			function updateDateTime() {
+			  var currentDate = new Date();
+			  var formattedDateTime = currentDate.toLocaleString(); // Get the formatted date and time
+			
+			  // Display the updated date and time in the HTML tag
+			  var dateTimeElement = document.getElementById("dateTime");
+			  dateTimeElement.textContent = "Current Date and Time: " + formattedDateTime;
+			}
+			
+			// Call the function initially
+			updateDateTime();
+			
+			// Set up a setInterval to update the date and time every second
+			setInterval(updateDateTime, 1000);
+			</script>
+		<br>
+		<p class="help-text"><span style="color: #0a088a;">Scroll</span> to the right to view the entire table || 
+         টেবিল টি কে পুরো দেখার জন্য ডান দিকে <span style="color: #0a088a;">স্ক্রল</span> করুন 👉</p>
+
+		<h3 class="center t-h2 " >{% if today %}{{today.date}} - Today's Results{% else %}No Results Found{% endif %}</h3>
+		<div class="table-container-1">
+		<center>
+		{% if today %}
+		<table class="table table-container">
+
+			<tbody>
+			  <tr class=" in-tr-b-r t-h2" >
+				<td class="in-td-1">
+			  <b>   1</b>
+				</td>
+				<td class="in-td-1">
+				  <b>   2</b>
+				  
+					</td>
+					<td class="in-td-1">
+					  <b>   3</b>
+						</td>
+						<td class="in-td-1">
+						  <b>   4</b>
+							</td>
+							<td class="in-td-1">
+							  <b>   5</b>
+								</td>
+								<td class="in-td-1">
+								  <b>   6</b>
+									</td>
+				<td class="in-td-1">
+			  <b>   7</b>
+				</td>
+				<td class="in-td-1">
+				  <b>   8</b>
+					</td>
+			  </tr>
+			  <tr class="tr-color-1 in-tr-b">
+				  <td class="in-td-1">
+				<b>{% if today.slot_1_1 and now >= slots_show['slot1'] %}{{today.slot_1_1}}{% else %}-{% endif %}</b>
+				  </td>
+				  <td class="in-td-1">
+					<b>{% if today.slot_2_1 and now >= slots_show['slot2'] %}{{today.slot_2_1}}{% else %}-{% endif %}</b>
+					</td>
+					  <td class="in-td-1">
+						<b>{% if today.slot_3_1 and now >= slots_show['slot3'] %}{{today.slot_3_1}}{% else %}-{% endif %}</b>
+						  </td>
+						  <td class="in-td-1">
+							<b>{% if today.slot_4_1 and now >= slots_show['slot4'] %}{{today.slot_4_1}}{% else %}-{% endif %}</b>
+							  </td>
+							  <td class="in-td-1">
+								<b>{% if today.slot_5_1 and now >= slots_show['slot5'] %}{{today.slot_5_1}}{% else %}-{% endif %}</b>
+								  </td>
+								  <td class="in-td-1">
+									<b>{% if today.slot_6_1 and now >= slots_show['slot6'] %}{{today.slot_6_1}}{% else %}-{% endif %}</b>
+									  </td>
+				  <td class="in-td-1">
+				<b>{% if today.slot_7_1 and now >= slots_show['slot7'] %}{{today.slot_7_1}}{% else %}-{% endif %}</b>
+				  </td>
+				  <td class="in-td-1">
+					<b>{% if today.slot_8_1 and now >= slots_show['slot8'] %}{{today.slot_8_1}}{% else %}-{% endif %}</b>
+					  </td>
+				</tr>
+			  <tr class="tr-color-1 in-tr-1">
+				  <td class="in-td-1">
+					  <b>{% if today.slot_1_3 and now >= slots_show['slot1'] %}{{today.slot_1_3}}{% else %}-{% endif %}</b>
+				  </td>
+				  <td class="in-td-1">
+					  <b>{% if today.slot_2_3 and now >= slots_show['slot2'] %}{{today.slot_2_3}}{% else %}-{% endif %}</b>
+					  </td>
+					  <td class="in-td-1">
+						  <b>{% if today.slot_3_3 and now >= slots_show['slot3'] %}{{today.slot_3_3}}{% else %}-{% endif %}</b>
+						  </td>
+						  <td class="in-td-1">
+							  <b>{% if today.slot_4_3 and now >= slots_show['slot4'] %}{{today.slot_4_3}}{% else %}-{% endif %}</b>
+							  </td>
+							  <td class="in-td-1">
+								  <b>{% if today.slot_5_3 and now >= slots_show['slot5'] %}{{today.slot_5_3}}{% else %}-{% endif %}</b>
+								  </td>
+								  <td class="in-td-1">
+									  <b>{% if today.slot_6_3 and now >= slots_show['slot6'] %}{{today.slot_6_3}}{% else %}-{% endif %}</b>
+									  </td>
+				  <td class="in-td-1">
+					  <b>{% if today.slot_7_3 and now >= slots_show['slot7'] %}{{today.slot_7_3}}{% else %}-{% endif %}</b>
+				  </td>
+				  <td class="in-td-1">
+					<b>{% if today.slot_8_3 and now >= slots_show['slot8'] %}{{today.slot_8_3}}{% else %}-{% endif %}</b>
+					  </td>
+				</tr>
+	   
+			  <!-- Add more rows as needed -->
+			</tbody>
+		  </table>
+		{% else %}
+			<p>No results entered for today.</p>
+		{% endif %}
+		</center>
+		</div>
+	</div>
+
+<br>
+	<center><button class="btn btn-danger"  id="refreshBtn">Refresh</button></center>
+	<script>
+		document.getElementById('refreshBtn').addEventListener('click', function() {
+		  // Reload the current page
+		  location.reload();
+		});
+		</script>
+<br>
+
+<div class="center" style="display:flex; gap:10px">
+	<button type="button" class="btn btn-success" ><b><svg xmlns="http://www.w3.org/2000/svg" width="26" height="20" fill="currentColor" class="bi bi-whatsapp" viewBox="0 0 16 16" style="margin-bottom:3px; color:rgb(255, 255, 255)" >
+		<path d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.9 7.9 0 0 0 13.6 2.326zM7.994 14.521a6.6 6.6 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.56 6.56 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592m3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.73.73 0 0 0-.529.247c-.182.198-.691.677-.691 1.654s.71 1.916.81 2.049c.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232"/>
+	  </svg></b><a href="whatsapp://send?text=This is WhatsApp sharing example using link" data-action="share/whatsapp/share"  style="text-decoration:none; color:white;"
+	  target="_blank"> Share  </a></button>
+	
+
+	 
+		
+	 
+	  
+	<button type="button" class="btn btn-info"><svg xmlns="http://www.w3.org/2000/svg" width="26" height="20" fill="currentColor" class="bi bi-messenger" viewBox="0 0 16 16" style="margin-bottom:3px; color:rgb(255, 255, 255)">
+		<path d="M0 7.76C0 3.301 3.493 0 8 0s8 3.301 8 7.76-3.493 7.76-8 7.76c-.81 0-1.586-.107-2.316-.307a.64.64 0 0 0-.427.03l-1.588.702a.64.64 0 0 1-.898-.566l-.044-1.423a.64.64 0 0 0-.215-.456C.956 12.108 0 10.092 0 7.76m5.546-1.459-2.35 3.728c-.225.358.214.761.551.506l2.525-1.916a.48.48 0 0 1 .578-.002l1.869 1.402a1.2 1.2 0 0 0 1.735-.32l2.35-3.728c.226-.358-.214-.761-.551-.506L9.728 7.381a.48.48 0 0 1-.578.002L7.281 5.98a1.2 1.2 0 0 0-1.735.32z"/>
+	  </svg>Share</button>
+	<button type="button" class="btn btn-primary"><svg xmlns="http://www.w3.org/2000/svg" width="26" height="20" fill="currentColor" class="bi bi-facebook" viewBox="0 0 16 16"style="margin-bottom:3px; color:rgb(255, 255, 255)">
+		<path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951"/>
+	  </svg><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=your-url-to-share&amp;src=sdk_preparse" class="fb-xfbml-parse-ignore"style="text-decoration:none; color:white;">Share</a></button>
+
+
+
+
+
+</div>
+<br><br>
+
+	<div class="container">
+		<p class="help-text"><span style="color: #0a088a;">Scroll</span> to the right to view the entire table || 
+			টেবিল টি কে পুরো দেখার জন্য ডান দিকে <span style="color: #0a088a;">স্ক্রল</span> করুন 👉</p>
+		<h3 class="center t-h2 " >{% if yesterday1 %}{{yesterday1.date}} - Results{% else %}No Results Found{% endif %}</h3>
+		<div class="table-container-1">
+			<center>
+				{% if yesterday1 %}
+				<table class="table table-container">
+		
+					<tbody>
+					  <tr class=" in-tr-b-r t-h2" >
+						<td class="in-td-1">
+					  <b>   1</b>
+						</td>
+						<td class="in-td-1">
+						  <b>   2</b>
+						  
+							</td>
+							<td class="in-td-1">
+							  <b>   3</b>
+								</td>
+								<td class="in-td-1">
+								  <b>   4</b>
+									</td>
+									<td class="in-td-1">
+									  <b>   5</b>
+										</td>
+										<td class="in-td-1">
+										  <b>   6</b>
+											</td>
+						<td class="in-td-1">
+					  <b>   7</b>
+						</td>
+						<td class="in-td-1">
+						  <b>   8</b>
+							</td>
+					  </tr>
+					  <tr class="tr-color-1 in-tr-b">
+						  <td class="in-td-1">
+						<b>{% if yesterday1.slot_1_1 %}{{yesterday1.slot_1_1}}{% else %}-{% endif %}</b>
+						  </td>
+						  <td class="in-td-1">
+							<b>{% if yesterday1.slot_2_1 %}{{yesterday1.slot_2_1}}{% else %}-{% endif %}</b>
+							</td>
+							  <td class="in-td-1">
+								<b>{% if yesterday1.slot_3_1 %}{{yesterday1.slot_3_1}}{% else %}-{% endif %}</b>
+								  </td>
+								  <td class="in-td-1">
+									<b>{% if yesterday1.slot_4_1 %}{{yesterday1.slot_4_1}}{% else %}-{% endif %}</b>
+									  </td>
+									  <td class="in-td-1">
+										<b>{% if yesterday1.slot_5_1 %}{{yesterday1.slot_5_1}}{% else %}-{% endif %}</b>
+										  </td>
+										  <td class="in-td-1">
+											<b>{% if yesterday1.slot_6_1 %}{{yesterday1.slot_6_1}}{% else %}-{% endif %}</b>
+											  </td>
+						  <td class="in-td-1">
+						<b>{% if yesterday1.slot_7_1 %}{{yesterday1.slot_7_1}}{% else %}-{% endif %}</b>
+						  </td>
+						  <td class="in-td-1">
+							<b>{% if yesterday1.slot_8_1 %}{{yesterday1.slot_8_1}}{% else %}-{% endif %}</b>
+							  </td>
+						</tr>
+					  <tr class="tr-color-1 in-tr-1">
+						  <td class="in-td-1">
+							  <b>{% if yesterday1.slot_1_3 %}{{yesterday1.slot_1_3}}{% else %}-{% endif %}</b>
+						  </td>
+						  <td class="in-td-1">
+							  <b>{% if yesterday1.slot_2_3 %}{{yesterday1.slot_2_3}}{% else %}-{% endif %}</b>
+							  </td>
+							  <td class="in-td-1">
+								  <b>{% if yesterday1.slot_3_3 %}{{yesterday1.slot_3_3}}{% else %}-{% endif %}</b>
+								  </td>
+								  <td class="in-td-1">
+									  <b>{% if yesterday1.slot_4_3 %}{{yesterday1.slot_4_3}}{% else %}-{% endif %}</b>
+									  </td>
+									  <td class="in-td-1">
+										  <b>{% if yesterday1.slot_5_3 %}{{yesterday1.slot_5_3}}{% else %}-{% endif %}</b>
+										  </td>
+										  <td class="in-td-1">
+											  <b>{% if yesterday1.slot_6_3 %}{{yesterday1.slot_6_3}}{% else %}-{% endif %}</b>
+											  </td>
+						  <td class="in-td-1">
+							  <b>{% if yesterday1.slot_7_3 %}{{yesterday1.slot_7_3}}{% else %}-{% endif %}</b>
+						  </td>
+						  <td class="in-td-1">
+							<b>{% if yesterday1.slot_8_3 %}{{yesterday1.slot_8_3}}{% else %}-{% endif %}</b>
+							  </td>
+						</tr>
+			   
+					  <!-- Add more rows as needed -->
+					</tbody>
+				  </table>
+				{% else %}
+					<p>No data entered for {{yesterday1}}.</p>
+				{% endif %}
+		</center>
+		</div>
+	</div>
+
+<br>
+
+
+
+	<div class="container">
+		<p class="help-text"><span style="color: #0a088a;">Scroll</span> to the right to view the entire table || 
+			টেবিল টি কে পুরো দেখার জন্য ডান দিকে <span style="color: #0a088a;">স্ক্রল</span> করুন 👉</p>
+		<h3 class="center t-h2 " >{% if yesterday2 %}{{yesterday2.date}} - Results{% else %}No Results Found{% endif %}</h3>
+		<div class="table-container-1">
+			<center>
+				{% if yesterday2 %}
+				<table class="table table-container">
+		
+					<tbody>
+					  <tr class=" in-tr-b-r t-h2" >
+						<td class="in-td-1">
+					  <b>   1</b>
+						</td>
+						<td class="in-td-1">
+						  <b>   2</b>
+						  
+							</td>
+							<td class="in-td-1">
+							  <b>   3</b>
+								</td>
+								<td class="in-td-1">
+								  <b>   4</b>
+									</td>
+									<td class="in-td-1">
+									  <b>   5</b>
+										</td>
+										<td class="in-td-1">
+										  <b>   6</b>
+											</td>
+						<td class="in-td-1">
+					  <b>   7</b>
+						</td>
+						<td class="in-td-1">
+						  <b>   8</b>
+							</td>
+					  </tr>
+					  <tr class="tr-color-1 in-tr-b">
+						  <td class="in-td-1">
+						<b>{% if yesterday2.slot_1_1 %}{{yesterday2.slot_1_1}}{% else %}-{% endif %}</b>
+						  </td>
+						  <td class="in-td-1">
+							<b>{% if yesterday2.slot_2_1 %}{{yesterday2.slot_2_1}}{% else %}-{% endif %}</b>
+							</td>
+							  <td class="in-td-1">
+								<b>{% if yesterday2.slot_3_1 %}{{yesterday2.slot_3_1}}{% else %}-{% endif %}</b>
+								  </td>
+								  <td class="in-td-1">
+									<b>{% if yesterday2.slot_4_1 %}{{yesterday2.slot_4_1}}{% else %}-{% endif %}</b>
+									  </td>
+									  <td class="in-td-1">
+										<b>{% if yesterday2.slot_5_1 %}{{yesterday2.slot_5_1}}{% else %}-{% endif %}</b>
+										  </td>
+										  <td class="in-td-1">
+											<b>{% if yesterday2.slot_6_1 %}{{yesterday2.slot_6_1}}{% else %}-{% endif %}</b>
+											  </td>
+						  <td class="in-td-1">
+						<b>{% if yesterday2.slot_7_1 %}{{yesterday2.slot_7_1}}{% else %}-{% endif %}</b>
+						  </td>
+						  <td class="in-td-1">
+							<b>{% if yesterday2.slot_8_1 %}{{yesterday2.slot_8_1}}{% else %}-{% endif %}</b>
+							  </td>
+						</tr>
+					  <tr class="tr-color-1 in-tr-1">
+						  <td class="in-td-1">
+							  <b>{% if yesterday2.slot_1_3 %}{{yesterday2.slot_1_3}}{% else %}-{% endif %}</b>
+						  </td>
+						  <td class="in-td-1">
+							  <b>{% if yesterday2.slot_2_3 %}{{yesterday2.slot_2_3}}{% else %}-{% endif %}</b>
+							  </td>
+							  <td class="in-td-1">
+								  <b>{% if yesterday2.slot_3_3 %}{{yesterday2.slot_3_3}}{% else %}-{% endif %}</b>
+								  </td>
+								  <td class="in-td-1">
+									  <b>{% if yesterday2.slot_4_3 %}{{yesterday2.slot_4_3}}{% else %}-{% endif %}</b>
+									  </td>
+									  <td class="in-td-1">
+										  <b>{% if yesterday2.slot_5_3 %}{{yesterday2.slot_5_3}}{% else %}-{% endif %}</b>
+										  </td>
+										  <td class="in-td-1">
+											  <b>{% if yesterday2.slot_6_3 %}{{yesterday2.slot_6_3}}{% else %}-{% endif %}</b>
+											  </td>
+						  <td class="in-td-1">
+							  <b>{% if yesterday2.slot_7_3 %}{{yesterday2.slot_7_3}}{% else %}-{% endif %}</b>
+						  </td>
+						  <td class="in-td-1">
+							<b>{% if yesterday2.slot_8_3 %}{{yesterday2.slot_8_3}}{% else %}-{% endif %}</b>
+							  </td>
+						</tr>
+			   
+					  <!-- Add more rows as needed -->
+					</tbody>
+				  </table>
+				{% else %}
+					<p>No data entered for {{yesterday2}}</p>
+				{% endif %}
+		</center>
+		</div>
+	</div>
+	<br><br><br><br>
+	<center><p><iframe src="https://wheeldecide.com/e.php?c1=1&amp;c2=2&amp;c3=3&amp;c4=4&amp;c5=5&amp;c6=6&amp;c7=7&amp;c8=8&amp;c9=9&amp;c10=0&amp;col=rw&amp;t=Lucky+Number+&amp;time=10" class="spin-b" frameborder="0" scrolling="no"><span data-mce-type="bookmark" style="display: inline-block; width: 0px; overflow: hidden; line-height: 0;" class="mce_SELRES_start"></span></iframe></p>
+	</center>
+	<br><br>
+<br>
+<br>
+<div class="buttons container">
+	<a href="/"><button class="button-width color-b">👉 Todays Result</button></a><br>
+<a href="/patti-chart"><button class="button-width color-b">👉 Patti Chart</button></a><br>
+<a href="/luckypatti"><button class="button-width color-b">👉 Lucky Patti</button></a><br>
+<a href="/tips">      <button class="button-width color-b">👉 Todays Tip</button></a><br>
+<a href="/tipstommorow"><button class="button-width color-b">👉 Tips Tomorrow</button><br>
+    <a href="/pattitips"><button class="button-width color-b">👉 Patti Tips</button></a><br>
+    <a href="/old"><button class="button-width color-b">👉 Old Result</button></a><br>
+
+</div>
+
+
+<div class="container my-5 ">
+
+<i>	<h1 class="text-center">BEHALA <span style="color: red;">FF</span> FATAFAT</h1></i>
+<h2 class="text-center"><i>RESULT TODAY</i></h2>
+<br><br>
+Official Website Here You will Get Super Fast <strong>Behala FF </strong>And ❤️ <strong>BEHALA FATAFAT ❤️</strong>
+ Today Result Live Online Daily Sabse Pahle On Time With Tips &amp; Patti and we also Provide Draw Time Table 2024 বেহালা ফটাফট আজকের রেজাল্ট and Free Dada <strong><a href="/tips/">Tips</a> &amp; Trick, <a href="/patti-chart/">220 Patti</a> Chart, Lucky <a href="/lucky-patti">Patti</a> &amp; <a href="/lucky-number/">Number</a>, <a href="/vote/">Prediction</a>,</strong> and <a href="/old-result-chart/"><strong>Old Result Chart</strong></a>.</p><br>
+<p class="text-center"><img src="../static/back-image/contact.jpg" alt="" srcset="" class="img-1"></p><br>
+<p>Yaha Pe Behala <span style="color: #ff0000;">FF</span> 
+Result Sabse Pehle Single or Patti ke sath Ek Dum Sahi Sahi Milta Hain KK BNK Results time. Khl Ka Sara Baji Ka Result Sabse Pehle Pane Ke Liye Website Ko Bookmark Kr Le. 
+Ya Google Pe aa Ke Likhe &#8220;<a href="/">Behalaff.in</a>&#8221; Sidha Humare Site Pe Aaye Kyu Ki Yaha Apko Result Ke Sath 
+<strong><a href="/tips">Daily Tips</a>, Tricks, <a href="/patti-chart">Patti Chart</a>, <a href="/old-result-chart/">Old Result Chart</a>, 
+<a href="/luckypatti">Lucky Number</a>
+</strong> aur <strong><a href="/luckypatti">Lucky Patti</a> 
+</strong>Sab Kuch Sath Me Milta hai Ek Click Me Bilkul Free Or Ek Dum Time Pe Sahi Sahi Result Patti Ke Sath Update Hota Hain Kyu ki Ye No.1 Official Website Hai.</p>
+
+</div>
+
+
+
+<div class="container">
+	<br><br><br>
+	<p class="help-text"><span style="color: #0a088a;">Scroll</span> to the right to view the entire table || 
+		টেবিল টি কে পুরো দেখার জন্য ডান দিকে <span style="color: #0a088a;">স্ক্রল</span> করুন 👉</p>
+	<h3 class="center t-h2 " >Old Result - Month</h3>
+	<div class="table-container-1">
+		<center>
+
+			<table class="table table-container">
+	
+				<tbody>
+				  <tr class=" in-tr-b-r t-h2" >
+
+					<td class="in-td-1">
+						<b>Date</b> 
+						  </td>
+					<td class="in-td-1">
+				  <b>    1</b>
+					</td>
+					<td class="in-td-1">
+					  <b>    2</b>
+					  
+						</td>
+						<td class="in-td-1">
+						  <b>    3</b>
+							</td>
+							<td class="in-td-1">
+							  <b>    4</b>
+								</td>
+								<td class="in-td-1">
+								  <b>    5</b>
+									</td>
+									<td class="in-td-1">
+									  <b>    6</b>
+										</td>
+					<td class="in-td-1">
+				  <b>    7</b>
+					</td>
+					<td class="in-td-1">
+					  <b>    8</b>
+						</td>
+				  </tr>
+				  <tr class="tr-color-1 in-tr-b">
+					  <td class="in-td-1">
+					<b>data</b>
+					<br>
+						<b>Data</b>
+					  </td>
+					  <td class="in-td-1">
+						<b>data</b>
+						<br>
+						<b>Data</b>
+						</td>
+						  <td class="in-td-1">
+							<b>data</b>
+							<br>
+						<b>Data</b>
+							  </td>
+							  <td class="in-td-1">
+								<b>data</b>
+								<br>
+						<b>Data</b>
+								  </td>
+								  <td class="in-td-1">
+									<b>data</b>
+									<br>
+						<b>Data</b>
+									  </td>
+									  <td class="in-td-1">
+										<b>data</b>
+										<br>
+						<b>Data</b>
+										 
+					  <td class="in-td-1">
+					<b>data</b>
+					<br>
+						<b>Data</b>
+					  </td>
+					  
+					  <td class="in-td-1">
+						<b>data</b>
+						<br>
+						<b>Data</b>
+						  </td>
+						  <td class="in-td-1">
+							<b>data</b>
+							<br>
+						<b>Data</b>
+							  </td>
+							  
+					
+					</tr>
+				
+		   
+				  <!-- Add more rows as needed -->
+				</tbody>
+			</table>
+	</center>
+	</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<br><br>
+<div class="container">
+
+	<h3 class="center t-h2" >Behala FF Result Time Table List </h3>
+	
+	<table class="table">
+	
+
+	  <tbody>
+		<tr class=" in-tr">
+		  <td class="in-td">
+		<b>1st Baji Draw</b>
+		  </td>
+		  <td class="in-td">
+		<b>09:55 AM <i class="fas fa-clock"></i></b>
+		  </td>
+		</tr>
+
+		<tr class="in-tr">
+			<td class="in-td">
+		  <b>2nd Baji Draw</b>
+			</td>
+			<td>
+		  <b>11:25 AM <i class="fas fa-clock"></i></b>
+			</td>
+		  </tr>
+		  <tr  class="in-tr">
+			<td class="in-td">
+		  <b>3rd Baji Draw</b>
+			</td>
+			<td class="in-td">
+		  <b>12:55 PM <i class="fas fa-clock"></i></b>
+			</td>
+		  </tr>
+		  <tr  class="in-tr">
+			<td class="in-td">
+		  <b>4th Baji Draw</b>
+			</td>
+			<td>
+		  <b>02:25 PM <i class="fas fa-clock"></i></b>
+			</td>
+		  </tr>
+		  <tr  class="in-tr" >
+			<td class="in-td">
+		  <b>5th Baji Draw</b>
+			</td>
+			<td class="in-td">
+		  <b>03:55 PM <i class="fas fa-clock"></i></b>
+			</td>
+		  </tr>
+		  <tr  class="in-tr" >
+			<td class="in-td">
+		  <b>6th Baji Draw</b>
+			</td>
+			<td class="in-td">
+		  <b>05:25 PM <i class="fas fa-clock"></i></b>
+			</td>
+		  </tr>
+		  <tr  class="in-tr" >
+			<td class="in-td">
+		  <b>7th Baji Draw</b>
+			</td>
+			<td class="in-td">
+		  <b>06:55 PM <i class="fas fa-clock"></i></b>
+			</td>
+		  </tr>
+		  <tr  class="in-tr" >
+			<td class="in-td">
+		  <b>8th Baji Draw</b>
+			</td>
+			<td class="in-td">
+		  <b>08:25 PM <i class="fas fa-clock"></i></b>
+			</td>
+		  </tr>
+		<!-- Add more rows as needed -->
+	  </tbody>
+	</table>
+</div>
+
+<br>
+<h5 class="text-center" style="padding-bottom: 15px;"><span>Behala <span style="color: #ff0000;">FF</span> Time Table</span></h5>
+<div class="container">
+
+	<h3 class="center t-h2" >Behala FF Info Chart</h3>
+	
+	<table class="table">
+	
+
+	  <tbody>
+		<tr class=" in-tr">
+		  <td class="in-td">
+		<b>Real Name :</b>
+		  </td>
+		  <td class="in-td">
+		<b>Behala Fatafat (বেহালা ফাটাফাত)</b>
+		  </td>
+		</tr>
+
+		<tr class="in-tr">
+			<td class="in-td">
+		  <b>Known AS :</b>
+			</td>
+			<td>
+		  <b>Behala Fatafat (বেহালা ফাটাফাত)</b>
+			</td>
+		  </tr>
+		  <tr  class="in-tr">
+			<td class="in-td">
+		  <b>Country / Region :</b>
+			</td>
+			<td class="in-td">
+		  <b>India</b>
+			</td>
+		  </tr>
+		  <tr  class="in-tr">
+			<td class="in-td">
+		  <b>Address :</b>
+			</td>
+			<td>
+		  <b>West Bengal , Kolkata</b>
+			</td>
+		  </tr>
+		  <tr  class="in-tr" >
+			<td class="in-td">
+		  <b>Category :</b>
+			</td>
+			<td class="in-td">
+		  <b>Behala Satta Matka Fatafat</b>
+			</td>
+		  </tr>
+		  <tr  class="in-tr" >
+			<td class="in-td">
+		  <b>Bid Range :</b>
+			</td>
+			<td class="in-td">
+		  <b>₹10 to ₹10 Lakh</b>
+			</td>
+		  </tr>
+		  <tr  class="in-tr" >
+			<td class="in-td">
+		  <b>Winning :</b>
+			</td>
+			<td class="in-td">
+		  <b>Multiple by 9</b>
+			</td>
+		  </tr>
+		<!-- Add more rows as needed -->
+	  </tbody>
+	</table>
+</div>
+
+
+
+
+
+ 
+
+
+
+<div class=" my-5 container">
+
+<h2 style="color: #ff0000;">  Some common FAQs</h2><br>
+<ul style="padding: 10px;">
+<li class="faq-li">What is BEHALA Satta Bangla?</li>
+<li class="faq-li">How To Play?</li>
+<li class="faq-li">Types of Games?</li>
+<li class="faq-li">How to Win?</li>
+<li class="faq-li">Where to play?</li>
+<li class="faq-li">Who Running This Game?</li>
+<li class="faq-li">How to Check Daily Results On Time?</li>
+<li class="faq-li">Why Call it BEHALA fatafat </li>
+</ul>
+<br>
+<p>One Answer for all these questions is already provided with an explanation &#8211; <a href="" target="_blank" rel="noopener">Check Now</a> It will be very easy for you to use our Website to Check Results every day.<br/>
+You only need to do one thing if you want to find out the BEHALA fotafot result online on our website. You just need to type BEHALA<span style="color: #ff0000;">ff</span>.in On Google.com and you can Directly Come to our Website. Then you go to Reload the result and click on it and you will get the result in one second. Our Website works very fine For Checking results every day. This is the No.1 website and is very fast and user-friendly for any kind of device. So whenever you want to check <a href="/">BEHALA FF Result</a>, Directly you can search on Google BEHALAff.in instead of .net .com .fun .xyz .org Tips and suggestions.</p>
+<h3><span  ></span>Many people are still asking that&#8217;s there are Any charges for BEHALA FF <a href="" target="_blank" rel="noopener noreferrer">Tips</a><span class="ez-toc-section-end"></span></h3>
+<p>a big no for them We Didn&#8217;t Charge Any Money For <a href="/tips">BEHALA FF Tips</a> and the Result is totally free for everyone. Moreover, people still don&#8217;t know that there&#8217;s a really easy solution on the web. This website is the best way of Checking results online on time and getting some BEHALA ff tricks too.</p>
+<h3 ><span ></span>How To Get Rich By BEHALA FF Winnings amount<span ></span></h3>
+<p >Many people want to get rich by the winning amount of cmm BEHALA ff, but it&#8217;s very difficult and it will take lots of continuous winnings For That we also try to give Daily Free Tips, which is definitely not easy you know. but don&#8217;t worry there are many ways to get rich and make a good amount of money (profit) by the winning amount. don&#8217;t worry I will teach you how to use your BEHALA Photo Fort winnings. The first way to make money by money is FD (Fixed Deposit) LIC schemes both are reliable and the oldest trusted methods but there is one disadvantage they will give you the highest 5% to 6% Return which is very but both are the safest way to investment who they don&#8217;t know anything about finance and both come under RBI Guidelines. but it also takes a couple of years to make a good amount of money in reality. but there are some other ways to make more than 20% to 25% but you need a little bit of knowledge and experience. 1- Share Market:- Invest in equity (Low Risk) or trading (High Risk), 2 &#8211; Mutual Fund &#8211; Lumpsum (one Time ) or SIP (Monthly) Both are low risk, 3 &#8211; Virtual gold (Low Risk), 4 &#8211; Government Bonds (Low Risk), 5 &#8211; this the riskiest option then all of them is CryptoCurrency &#8211; Invest (Low Risk) Trading (High Risk). if want to know more about these 5 options please <a href="/contact-us/">Contact us</a> with your Question We give you an answer by Email or Write a detailed post about them.</p>
+<h3 ><span ></span>Some users also are Searching on Google &#8220;BEHALA fotafot Satta &#8221;</h3>
+<p>for them, we would like to tell you that this is the Main Website on the web which provides you with each &amp; every Result on time And also all the details related to the BEHALA FF Satta Khl.</p>
+<h3 ><span ></span>Why should you use Our Website To get the BEHALA FATAFAT Lottery Result?<span ></span></h3>
+<p >Our website is very easy to use. To find out the exact Photo Fort Result, the main thing you will get here is BEHALA ff <a href="/tips" target="_blank" rel="noopener noreferrer">Tips</a> sm For Game Everyday For Totally free of Cost. Also, you can use our website To check fast BEHALA Satta Results with Zero Downtime. Most of the time you just need to visit and you will get the result. there is an easy solution for Online Result Checking and everyone can use our website. It will save you time and help you in finding BEHALA fatafat Results online.</p>
+
+
+</div>
+
+
+
+
+
+
+
+
+</body>
+
+{% endblock body %}
+</html>

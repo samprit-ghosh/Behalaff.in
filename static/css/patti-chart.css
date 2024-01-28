@@ -1,0 +1,61 @@
+
+/* <style> */
+ .patti-img{
+margin-top:30px;
+border-radius:5px;
+height:200px;
+width:300px;
+ }
+
+
+
+@media(max-width:768px){
+    .patti-li-img{
+        width: 350px;
+    }
+}
+
+@media(max-width:450px){
+    .patti-li-img{
+       zoom: 90%;
+    }
+
+    .patti-img{
+        zoom: 90%;
+    }
+}
+
+@media(max-width:350px){
+.patti-chart-body{
+    zoom: 90%;
+}
+}
+
+
+@media(max-width:320px){
+    .patti-li-img{
+       zoom: 80%;
+    }
+}
+
+
+@media(max-width:470px)
+{
+    .lucckupattibody{
+        zoom:90%;
+    }
+}
+
+@media(max-width:425px)
+{
+   .table-patti{
+    width: 10%;
+    max-width: 10%;
+    zoom: 78%;
+   }
+}
+
+
+
+
+/* </style> */

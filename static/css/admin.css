@@ -1,0 +1,127 @@
+/* <style> */
+
+.admin-tdd{
+    border: 1.4px solid rgb(8, 79, 79);
+    text-align: center;
+    padding: 8px;
+    font-weight: 550;
+  }
+
+
+.admin-th{
+background-color: rgb(237, 172, 85);
+border: 1.4px solid rgb(8, 79, 79);
+    text-align: center;
+    padding: 8px;
+
+}
+.admin-input{
+
+  width: 150px;
+  height: 30px;
+}
+.input-table,.numerinput{
+width:80%;
+max-width: 100%;
+}
+.ad-form{
+margin-top:50px;
+background-color: rgb(236, 236, 44); width:90%;
+padding-top: 60px;
+padding-bottom: 30px;
+border-radius: 5px;
+width:600px ;
+}
+.tableinput-ad{
+  display:flex;
+  flex-direction: row;
+  width: 500px;
+  margin: auto;
+}
+
+.admin-input{
+text-align: center;
+font-weight: 700;
+color:rgb(155, 10, 10);
+}
+
+@media(max-width:768px){
+  .ad-form{
+    margin-top:50px;
+    background-color: rgb(221, 221, 16); width:90%;
+    padding-top: 60px;
+    padding-bottom: 30px;
+    border-radius: 5px;
+    width:500px ;
+    
+    }
+  .tableinput-ad{
+    width: auto;
+  }
+}
+
+
+@media(max-width:590px){
+.ad-form{
+
+  width: 400px;
+}
+.admin-input{
+
+  width: 90px;
+  height: 35px;
+}
+
+#slots{
+  width: 90px;
+  height: 35px;
+}
+
+}
+
+@media(max-width:470px){
+  .ad-form{
+    margin-top:50px;
+    background-color: rgb(221, 221, 16); width:90%;
+    padding-top: 60px;
+    padding-bottom: 30px;
+    border-radius: 5px;
+    width:fit-content;
+    padding-left: 18px;
+    padding-right: 18px;
+    zoom: 98%;
+    }
+   
+}
+
+@media(max-width:350px){
+  .ad-form{
+    margin-top:50px;
+    background-color: rgb(221, 221, 16); width:90%;
+    padding-top: 60px;
+    padding-bottom: 30px;
+    border-radius: 5px;
+    width:fit-content;
+    padding-left: 18px;
+    padding-right: 18px;
+    zoom: 94%;
+    }
+   
+}
+
+
+@media(max-width:314px){
+.admin-body
+{
+  zoom: 95%;
+}
+}
+
+
+
+
+
+
+
+
+/* </style> */

@@ -1,0 +1,203 @@
+/* <style> */
+
+.color-b{
+	color: rgb(255, 255, 255);
+	background-color: rgb(128, 7, 7);
+	height: 50px;
+    font-weight: 600;
+	border-radius: 5px;
+}
+.color-b:hover{
+	color: rgb(255, 255, 255);
+	background-color: rgb(87, 7, 7);
+	height: 50px;
+    font-weight: 600;
+}
+
+.text-center{
+	text-align: center;
+
+}
+
+
+
+/* Apply styles to the select element */
+
+
+.center{
+	display: flex;
+	justify-content: center;
+}
+
+
+ .in-td,.in-tr {
+      border: 2px solid rgb(8, 79, 79); /* Border color */
+      padding: 8px;
+      text-align: center;
+    }
+
+	.in-td-1 {
+      border: 2px solid rgb(8, 79, 79); /* Border color */
+      padding: 5px;
+      text-align: center;
+    }
+
+.tr-color-1{
+	color: #ff0000;
+}
+
+.t-h2{
+padding: 7px;
+background-color: rgb(8, 79, 79);
+color: white;
+}
+
+.img-1{
+	height: 200px;
+	width: 300px;
+	border-radius: 5px;
+}
+
+.in-tr:hover{
+	background-color:  yellowgreen;
+    
+}
+.in-tr-1:hover{
+	background-color: yellowgreen;
+  
+}
+
+.in-tr-b:hover{
+	background-color:  yellowgreen;
+
+}
+.in-tr-b{
+	border-top: 2px solid rgb(8, 79, 79); /* Border color */
+      padding: 5px;
+      text-align: center;
+}
+.in-tr-b-r{
+	border-top: 2px solid rgb(8, 79, 79); /* Border color */
+      padding: 5px;
+      text-align: center;
+}
+
+
+.spin-b{
+	width:500px; height:300px;
+}
+
+
+@media(max-width:545px)
+{
+	.spin-b{
+		width:300px; height:200px;
+	}
+}
+
+@media(max-width:450px){
+.t-h2{
+	zoom:90%;
+}
+
+
+}
+
+@media(max-width:407px){
+.t-h2{
+	zoom:80%;
+}
+.spin-b{
+	zoom: 90%;
+}
+
+}
+
+@media(max-width:365px){
+.t-h2{
+	zoom:75%;
+}
+
+.img-1{
+	zoom:80%;
+}
+}
+@media(max-width:325px){
+
+
+.img-1{
+	zoom:75%;
+}
+
+}
+
+/* .table-container{
+	
+	overflow-x: auto;
+
+} */
+
+.help-text{
+	display: none;
+	color: #960c0c;
+	font-size: 16px;
+}
+
+
+@media(max-width:768px){
+
+.table-container{
+	
+	/* background-color: #960c0c; */
+zoom:84.5%;
+/* width:20%; */
+}
+}
+.table-container-1{
+	/* width: 100%; */
+	overflow-x:auto;
+
+}
+
+@media(max-width:390px){
+	.help-text{
+		display: block;
+	}
+}
+
+
+
+
+.faq-li{
+	color: #0a088a;;
+	padding-top: 10px;
+}
+
+/* .index-body{
+	background: linear-gradient(-50deg, #4eadf0, #c6c6c6, #fffefe,red);
+	background-size: 400% 400%;
+	animation: gradient 5s ease infinite;
+}
+
+@keyframes gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+} */
+
+
+.index-body{
+	background-color: rgb(231, 229, 229);
+}
+
+.button-width{
+	width:100%;
+	margin-bottom:20px ;
+}
+/* </style> */

@@ -1,0 +1,122 @@
+{% extends 'layout.html' %}
+{% block title %} {{title}} {% endblock title %}
+{% block body %}
+
+
+
+<body class="admin-body" style="background-image: linear-gradient(rgb(4564560, 6, 6), rgb(4564565, 45699, 45699), rgb(45635, 456456456, 45649),rgb(45688, 45686, 45686));">
+<center>
+
+<form action="/update" method="post" class="ad-form">
+
+
+  <div class="table-container">
+    <h1>Add New Result</h1>
+    <br><br>
+  <table id="inputTable container">
+    <thead>
+
+      <tr class="admin-tr">
+        <th class="admin-th">Slot</th>
+        <th class="admin-th">One Digit</th>
+        <th class="admin-th">Three Digits</th>
+        
+      </tr>
+    </thead>
+    <tbody>
+   
+      <!-- Add more rows as needed -->
+
+      <tr id="row456">
+        <td class="admin-tdd">
+          <select name="slots" id="slots">
+            <option disabled selected>Select a Slot</option>
+            {% if not daily_data.slot_1_1 and now <= slots_add['slot1'] %}
+                <option value="1">Slot - 1</option>
+            {% endif %}
+            {% if not daily_data.slot_2_1 and now <= slots_add['slot2'] %}
+                <option value="2">Slot - 2</option>
+            {% endif %}
+            {% if not daily_data.slot_3_1 and now <= slots_add['slot3'] %}
+                <option value="3">Slot - 3</option>
+            {% endif %}
+            {% if not daily_data.slot_4_1 and now <= slots_add['slot4'] %}
+                <option value="4">Slot - 4</option>
+            {% endif %}
+            {% if not daily_data.slot_5_1 and now <= slots_add['slot5'] %}
+                <option value="5">Slot - 5</option>
+            {% endif %}
+            {% if not daily_data.slot_6_1 and now <= slots_add['slot6'] %}
+                <option value="6">Slot - 6</option>
+            {% endif %}
+            {% if not daily_data.slot_7_1 and now <= slots_add['slot7'] %}
+                <option value="7">Slot - 7</option>
+            {% endif %}
+            {% if not daily_data.slot_8_1 and now <= slots_add['slot8'] %}
+                <option value="8">Slot - 8</option>
+            {% endif %}
+        </select>
+        </td>
+        <td class="admin-tdd"><input type="number" name="one_digit" id=""  class="admin-input" min="0" max="9" required></td>
+        <td class="admin-tdd"><input type="number" name="three_digit" id="" class="admin-input" min="0" max="999" required></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+  <br><br>
+  <button type="submit"  class="btn btn-success btn-lg">Submit</button>
+</form>
+</center>
+<br><br><br>
+
+<div class="tableinput-ad">
+      <br><br>
+      <table class="numerinput" align="center">
+        <thead>
+          <tr class="admin-tr">
+            <th class="admin-th">Slotes</th>
+            <th class="admin-th">One Digit</th>
+            <th class="admin-th">Three Digits</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="admin-tr">
+            <td class="admin-tdd" style="background-color:yellow;">
+              
+            </td>
+            <td class="admin-tdd">2</td>
+            <td class="admin-tdd">221</td>
+          </tr>
+        </tbody>
+      </table>
+      </div>
+      <br><br>
+      <h2 class="text-center my-5" style="margin: 15px;">Kolkata FF FATAFAT Patti List Chart</h2>
+      <center>
+          <img src="../static/back-image/Patti-list.png" alt="patti list" srcset="" class="patti-li-img">
+      </center>
+
+</body>
+
+<script>
+
+function fillInput(number) {
+  var row = document.getElementById("input1");
+  for (var i = 0; i < 9; i++) {
+    var inputId = "input" + (i + 1);
+    var inputValue = number ;
+    document.getElementById("input1").value = inputValue;
+
+
+  }
+}
+
+
+</script>
+
+
+
+
+{% endblock body %}
+</html>
+
