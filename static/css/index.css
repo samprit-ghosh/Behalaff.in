@@ -183,6 +183,16 @@ zoom:84.5%;
 
 
 
+.hide-m{
+	display: none;
+}
+
+@media(max-width:990px){
+.hide-m{
+	display: block;
+}
+
+}
 
 .faq-li{
 	color: #0a088a;;
