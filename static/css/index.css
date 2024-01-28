@@ -30,6 +30,13 @@
 }
 
 
+@media(max-width:370px){
+	.center{
+		zoom: 80%;
+	}
+}
+
+
  .in-td,.in-tr {
       border: 2px solid rgb(8, 79, 79); /* Border color */
       padding: 8px;
@@ -159,9 +166,18 @@ zoom:84.5%;
 
 }
 
-@media(max-width:390px){
+@media(max-width:379px){
 	.help-text{
 		display: block;
+	}
+}
+
+
+
+@media(max-width:500px){
+	.old-r{
+		zoom:72%;
+		width: fit-content;
 	}
 }
 
