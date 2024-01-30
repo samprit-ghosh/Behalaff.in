@@ -198,7 +198,7 @@ def contact():
     
 @app.route("/tips")
 def tips():
-    return render_template("tips.html")
+    return render_template("Tips.html")
 
 
 @app.route('/about')
